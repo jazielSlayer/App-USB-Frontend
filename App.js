@@ -88,6 +88,11 @@ const App = () => {
         component={CategoriaEquiposScreen}
         options={{ title: "Categorías" }}
       />
+      <Drawer.Screen
+              name="Sobre el grupo"
+              component={CategoriaGrupo}
+              options={{ title: "Sobre el grupo" }}
+            />
     </Drawer.Navigator>
   );
 
