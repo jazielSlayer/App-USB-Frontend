@@ -179,5 +179,19 @@ const styles = StyleSheet.create({
   tabContainer: { flex: 1 },
   errorText: { color: '#ffffff', fontSize: 18, textAlign: 'center', marginTop: 20 },
 });
+import React from 'react';
+
+function App() {
+  const handleClick = () => {
+    console.log('Consulta realizada por [TuNombre]');
+  };
+
+  return (
+    <div className="App">
+      <button onClick={handleClick}>Hacer consulta</button>
+    </div>
+  );
+}
 
 export default App;
+
