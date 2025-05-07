@@ -192,6 +192,55 @@ function App() {
     </div>
   );
 }
+const { Sequelize, DataTypes } = require('sequelize');
 
+// Conexión a la base de datos
+const sequelize = new Sequelize('mi_base_de_datos', 'root', 'password', {
+  host: 'localhost',
+  dialect: 'mysql',
+});
+
+// Definir el modelo de la tabla 'usuarios'
+const Usuario = sequelize.define('Usuario', {
+  nombre: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  apellido: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  correo: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  edad: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+  },
+}, {
+  tableName: 'usuarios',  // Asegúrate de que coincida con el nombre de tu tabla
+  timestamps: false,      // Si no usas timestamps en tu tabla
+});
+
+// Hacer una consulta para obtener usuarios con edad mayor a 18
+async function obtenerUsuarios() {
+  try {
+    const usuarios = await Usuario.findAll({
+      where: {
+        edad: {
+          [Sequelize.Op.gt]: 18  // Edad mayor a 18
+        }
+      }
+    });
+
+    console.log('Usuarios mayores de 18:', usuarios);
+  } catch (error) {
+    console.error('Error al obtener usuarios:', error);
+  }
+}
+
+// Llamar la función para ejecutar la consulta
+obtenerUsuarios();
 export default App;
 
